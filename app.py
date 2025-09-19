@@ -18,14 +18,28 @@ def saveTransaction(item, amount, type):
 
     try:
         with open(fileName, "r") as file:
-            transactions = json.load(file)
+            transactions = json.load(file) # turn json format to dict
     except (FileNotFoundError, json.JSONDecodeError):
         # handle missing file and empty .json
         transactions = []
 
     transactions.append(expense)
     with open(fileName, "w") as file:
-        json.dump(transactions, file, indent=2) 
+        json.dump(transactions, file, indent=2) # write python dict to json format
+
+def getTransactions():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    fileName = os.path.join(base_dir, "data", "transactions.json")
+    os.makedirs(os.path.dirname(fileName), exist_ok=True)
+
+    try:
+        with open(fileName, "r") as file:
+            transactions = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        transactions = []
+
+    return transactions
+
 
 app = Flask(__name__) # create a webpage named app
 
@@ -44,7 +58,12 @@ def addTransaction():
         saveTransaction(item, amount, type)
         return f"Added {item} for {amount} VND as {type}" # confirmation
 
-    return render_template('add-transaction.html') # render add-expense.html 
+    return render_template('add-transactions.html') # render add-expense.html 
+
+@app.route('/view-transactions', methods=['GET'])
+def viewTransaction():
+
+    return render_template('view-transactions.html', transactions = getTransactions())
 
 if __name__ == "__main__":
     app.run(debug=True)
