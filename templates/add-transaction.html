@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Transaction</title>
+</head>
+<body>
+    <form action="/add-transaction" method="POST">
+        <label for="item">Transaction Description:</label>
+        <input type="text" id="item" minlength="1" name="item"><br>
+
+        <label for="amount">Transaction Amount:</label>
+        <input type="number" id="amount" minlength="1" name="amount" placeholder="in VND"><br>
+
+        <label for="type">Type of transaction: </label>
+
+        <label for="Expense">Expense</label>
+        <input type="radio" id ="expense" value="Expense" name="type">
+        <label for="Income">Income</label>
+        <input type="radio" id ="income" value="Income" name="type"><br>
+
+        <input type="submit">
+    </form>
+</body>
+</html>

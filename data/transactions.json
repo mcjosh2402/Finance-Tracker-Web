@@ -1,0 +1,14 @@
+[
+  {
+    "item": "Salary",
+    "amount": 990000.0,
+    "date": "2025-09-19",
+    "type": "Income"
+  },
+  {
+    "item": "RTX 4060",
+    "amount": 34567.0,
+    "date": "2025-09-19",
+    "type": "Expense"
+  }
+]
