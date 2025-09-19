@@ -40,12 +40,11 @@ def getTransactions():
 
     return transactions
 
-
 app = Flask(__name__) # create a webpage named app
 
 @app.route('/') # main landing page
 def home():
-    return "<h1> My Finance Tracker</h1><p>It works!</p>"
+    return render_template('home.html')
 
 @app.route('/add-transaction', methods=['GET', 'POST']) # add transaction page
 def addTransaction():
@@ -56,12 +55,12 @@ def addTransaction():
         type = request.form['type']
 
         saveTransaction(item, amount, type)
-        return f"Added {item} for {amount} VND as {type}" # confirmation
+        return render_template('home.html') 
 
-    return render_template('add-transactions.html') # render add-expense.html 
+    return render_template('add-transaction.html') # render add-expense.html 
 
 @app.route('/view-transactions', methods=['GET'])
-def viewTransaction():
+def viewTransactions():
 
     return render_template('view-transactions.html', transactions = getTransactions())
 

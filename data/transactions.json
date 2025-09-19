@@ -10,5 +10,11 @@
     "amount": 34567.0,
     "date": "2025-09-19",
     "type": "Expense"
+  },
+  {
+    "item": "RX 9060 XT",
+    "amount": 987654.0,
+    "date": "2025-09-19",
+    "type": "Expense"
   }
 ]
