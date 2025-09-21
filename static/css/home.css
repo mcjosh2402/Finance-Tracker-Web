@@ -4,7 +4,10 @@ body {
 }
 
 .sidebar {
-    background: #f8f9fa;
+    background: #f7f8fa;
+    position: fixed;
+    flex-direction: column;
+    display: flex;
     border-right: 1px solid #e9ecef;
     min-height: 100vh;
 }
@@ -48,13 +51,14 @@ body {
 }
 
 .stat-card {
-    border: 1px solid #f1f5f9;
-    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 15px;
     transition: all 0.2s;
 }
 
 .stat-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .stat-number {

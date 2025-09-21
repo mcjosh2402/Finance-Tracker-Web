@@ -38,13 +38,39 @@ def getTransactions():
     except (FileNotFoundError, json.JSONDecodeError):
         transactions = []
 
-    return transactions
+    return transactions # return python dict from .json
+
+def totalCalculation():
+    total_income = 0; total_expense = 0;
+    transactions = getTransactions() # get .json informations as dict
+    for transaction in transactions:
+        if (transaction["type"] == "Expense"):
+            total_expense += float(transaction["amount"])
+        else:
+            total_income += float(transaction["amount"])
+    
+    balance = total_income - total_expense
+    
+    return {
+        "balance": balance,
+        "income": total_income,
+        "expenses": total_expense,
+        "transaction_count": len(transactions) # 5 recent transactions
+    }
+
+def getRecentTransactions(limit=5):
+    transactions = getTransactions()
+    return sorted(transactions, key=lambda x: x['date'], reverse=True)[:limit]
+
+
 
 app = Flask(__name__) # create a webpage named app
 
 @app.route('/') # main landing page
 def home():
-    return render_template('home.html')
+    totals = totalCalculation() # calculation dict
+    recentTransactions = getRecentTransactions(3) # show i number of recent transactions
+    return render_template('home.html', totals = totals, recentTransactions = recentTransactions)
 
 @app.route('/add-transaction', methods=['GET', 'POST']) # add transaction page
 def addTransaction():
@@ -55,7 +81,6 @@ def addTransaction():
         type = request.form['type']
 
         saveTransaction(item, amount, type)
-        return render_template('home.html') 
 
     return render_template('add-transaction.html') # render add-expense.html 
 
