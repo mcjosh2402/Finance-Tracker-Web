@@ -1,26 +1,20 @@
 [
   {
     "item": "Salary",
-    "amount": 990000.0,
+    "amount": 1000000.0,
     "date": "2025-09-19",
     "type": "Income"
   },
   {
     "item": "RTX 4060",
-    "amount": 34567.0,
+    "amount": 300000.0,
     "date": "2025-09-19",
     "type": "Expense"
   },
   {
     "item": "RX 9060 XT",
-    "amount": 987654.0,
+    "amount": 200000.0,
     "date": "2025-09-19",
     "type": "Expense"
-  },
-  {
-    "item": "Testing",
-    "amount": 1000000.0,
-    "date": "2025-09-21",
-    "type": "Income"
   }
 ]

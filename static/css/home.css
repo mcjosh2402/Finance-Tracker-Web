@@ -5,10 +5,9 @@ body {
 
 .sidebar {
     background: #f7f8fa;
-    position: fixed;
     flex-direction: column;
     display: flex;
-    border-right: 1px solid #e9ecef;
+    border-right: 3px solid #e9ecef;
     min-height: 100vh;
 }
 
@@ -83,91 +82,6 @@ body {
     border-radius: 12px;
 }
 
-.chart-area {
-    height: 280px;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-.chart-bars {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    align-items: end;
-    justify-content: space-around;
-    height: 160px;
-}
-
-.chart-month {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-}
-
-.chart-bar-group {
-    display: flex;
-    align-items: end;
-    gap: 2px;
-    margin-bottom: 8px;
-}
-
-.chart-bar {
-    width: 12px;
-    border-radius: 2px;
-}
-
-.chart-bar.income {
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.chart-bar.expense {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.chart-month-label {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 11px;
-    font-weight: 500;
-}
-
-.budget-donut {
-    width: 140px;
-    height: 140px;
-    position: relative;
-}
-
-.donut-chart {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-}
-
-.donut-value {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.donut-amount {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1f2937;
-    line-height: 1;
-}
-
-.donut-label {
-    font-size: 11px;
-    color: #6b7280;
-    margin-top: 2px;
-}
-
 .transaction-row:hover {
     background-color: #f9fafb;
 }
@@ -178,39 +92,5 @@ body {
     border-radius: 6px;
     padding: 2px 8px;
     font-size: 11px;
-    font-weight: 500;
-}
-
-.goal-progress {
-    width: 60px;
-    height: 4px;
-    background: #e5e7eb;
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.goal-progress-fill {
-    height: 100%;
-    background: #6366f1;
-    border-radius: 2px;
-}
-
-.header-button {
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 6px 12px;
-    background: white;
-    color: #6b7280;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.primary-button {
-    background: #6366f1;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 16px;
-    color: white;
-    font-size: 14px;
     font-weight: 500;
 }

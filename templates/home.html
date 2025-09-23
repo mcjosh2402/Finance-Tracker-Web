@@ -15,13 +15,11 @@
             <div class="col-2">
                 <div class="sidebar p-4">
 
-                    <!-- Logo -->
                     <div class="d-flex align-items-center mb-5">
-                        <div class="logo-circle me-3">F</div> <!--user upload image-->
-                        <h6 class="mb-0 fw-bold text-dark">Account Details</h6> <!--should be user name-->
+                        <div class="logo-circle me-3">F</div> 
+                        <h6 class="mb-0 fw-bold text-dark">Account Details</h6> 
                     </div>
-                    
-                    <!-- Side Navigation -->
+
                     <ul class="nav nav-pills flex-column"> 
                         <li class="nav-item mb-1">
                             <a class="nav-link active" href="{{ url_for('home') }}">
@@ -41,10 +39,10 @@
                                 Lịch sử giao dịch
                             </a>
                         </li>
-                        <!--more to be added-->
+
                     </ul>
                     
-                    <!-- Bottom Navigation -->
+
                     <div class="bottom-nav mt-auto">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item mb-1">
@@ -59,7 +57,7 @@
                                     Đăng xuất
                                 </a>
                             </li>
-                        </ul>
+                        </ul> 
                     </div>
                 </div>
             </div>
@@ -67,369 +65,130 @@
             <!-- Main Content -->
             <div class="col-10">
                 <div class="main-content p-4">
-                    <!-- Header -->
                     <div class="d-flex justify-content-between align-items-start mb-4">
-                        <div>
-                            <div class="d-flex align-items-center mb-2">
-                                <h1 class="h3 fw-bold text-dark mb-0">Welcome back, User!</h1>
-                            </div>
-                            <p class="text-muted mb-0">It is the best time to manage your finances</p>
+                    <div>
+                        <div class="d-flex align-items-center mb-2">
+                            <h1 class="h3 fw-bold text-dark mb-0">Welcome back, User!</h1>
                         </div>
-                        
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="d-flex align-items-center">
-                                <button class="header-button me-3">
-                                    <i class="fas fa-calendar me-2"></i>
-                                    This month
-                                </button>
-                                <button class="header-button me-3">
-                                    <i class="fas fa-th me-2"></i>
-                                    Manage widgets
-                                </button>
-                                <button class="primary-button">
-                                    <i class="fas fa-plus me-2"></i>
-                                    Add new widget
-                                </button>
-                            </div>
-                        </div>
+                        <p class="text-muted mb-0">It is the best time to manage your finances</p>
                     </div>
-                    
-                    <!-- Stats Cards -->
-                    <div class="row g-3 mb-4">
-                        <div class="col-3">
-                            <div class="card stat-card border-secondary h-100">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <span class="stat-label">Số tiền hiện có</span>
-                                        <i class="fas fa-arrow-up-right text-muted"></i>
-                                    </div>
-                                    <div class="stat-number text-dark mb-2">
-                                        {{ "{:,.0f}".format(totals.balance) }} ₫<span class="text-muted"></span>
-                                    </div>
-                                    <div class="change-indicator text-success">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        12.1% <span class="text-muted">so với tháng trước</span>
-                                    </div>
+                </div>
+                
+
+                <div class="row g-3 mb-4">
+                    <div class="col-4">
+                        <div class="card stat-card border-secondary h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="stat-label">Số tiền hiện có</span>
+                                    <i class="fas fa-arrow-up-right text-muted"></i>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-3">
-                            <div class="card stat-card border-secondary h-100">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <span class="stat-label">Dòng tiền vào</span>
-                                        <i class="fas fa-arrow-up-right text-muted"></i>
-                                    </div>
-                                    <div class="stat-number text-success mb-2">
-                                        {{ "{:,.0f}".format(totals.income) }} ₫<span class="text-muted"></span>
-                                    </div>
-                                    <div class="change-indicator text-success">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        6.3% <span class="text-muted">so với tháng trước</span>
-                                    </div>
+                                <div class="stat-number text-dark mb-2">
+                                    {{ "{:,.0f}".format(totals.balance) }} ₫<span class="text-muted"></span>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-3">
-                            <div class="card stat-card border-secondary h-100">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <span class="stat-label">Dòng tiền ra</span>
-                                        <i class="fas fa-arrow-up-right text-muted"></i>
-                                    </div>
-                                    <div class="stat-number text-danger mb-2">
-                                        {{ "{:,.0f}".format(totals.expenses) }} ₫<span class="text-muted"></span>
-                                    </div>
-                                    <div class="change-indicator text-danger">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        2.4% <span class="text-muted">so với tháng trước</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-3">
-                            <div class="card stat-card border-secondary h-100">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <span class="stat-label">Total savings</span>
-                                        <i class="fas fa-arrow-up-right text-muted"></i>
-                                    </div>
-                                    <div class="stat-number text-primary mb-2">
-                                        {{ "{:,.0f}".format(100000) }} ₫<span class="text-muted"></span>
-                                    </div>
-                                    <div class="change-indicator text-success">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        12.1% <span class="text-muted">so với tháng trước</span>
-                                    </div>
+                                <div class="change-indicator text-success">
+                                    <i class="fas fa-arrow-up me-1"></i>
+                                    12.1% <span class="text-muted">so với tháng trước</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Bottom Section -->
-                    <div class="row g-3">
-                        <!-- Left Content -->
-                        <div class="col-8">
-                            <div class="row g-3">
-                                <!-- Money Flow Chart -->
-                                <div class="col-12">
-                                    <div class="card content-card border-0">
-                                        <div class="card-body p-4">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h6 class="fw-bold mb-0">Money flow</h6>
-                                                <div class="d-flex align-items-center gap-4">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #6366f1;"></div>
-                                                        <small class="text-muted">Income</small>
-                                                    </div>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #8b5cf6;"></div>
-                                                        <small class="text-muted">Expense</small>
-                                                    </div>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-link btn-sm text-muted dropdown-toggle p-0" data-bs-toggle="dropdown">
-                                                            All accounts
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end">
-                                                            <li><a class="dropdown-item" href="#">All accounts</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-link btn-sm text-muted dropdown-toggle p-0" data-bs-toggle="dropdown">
-                                                            This year
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end">
-                                                            <li><a class="dropdown-item" href="#">This year</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="chart-area">
-                                                <div class="chart-bars">
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 60px;"></div>
-                                                            <div class="chart-bar expense" style="height: 80px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">Jan</span>
-                                                    </div>
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 80px;"></div>
-                                                            <div class="chart-bar expense" style="height: 100px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">Feb</span>
-                                                    </div>
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 90px;"></div>
-                                                            <div class="chart-bar expense" style="height: 70px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">Mar</span>
-                                                    </div>
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 110px;"></div>
-                                                            <div class="chart-bar expense" style="height: 90px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">Apr</span>
-                                                    </div>
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 100px;"></div>
-                                                            <div class="chart-bar expense" style="height: 110px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">May</span>
-                                                    </div>
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 70px;"></div>
-                                                            <div class="chart-bar expense" style="height: 85px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">Jun</span>
-                                                    </div>
-                                                    <div class="chart-month">
-                                                        <div class="chart-bar-group">
-                                                            <div class="chart-bar income" style="height: 85px;"></div>
-                                                            <div class="chart-bar expense" style="height: 95px;"></div>
-                                                        </div>
-                                                        <span class="chart-month-label">Jul</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="col-4">
+                        <div class="card stat-card border-secondary h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="stat-label">Dòng tiền vào</span>
+                                    <i class="fas fa-arrow-up-right text-muted"></i>
                                 </div>
-                                
-                                <!-- Recent Transactions -->
-                                <div class="col-12">
-                                    <div class="card content-card border-0">
-                                        <div class="card-body p-4">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h6 class="fw-bold mb-0">Các giao dịch gần nhất</h6>
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-link btn-sm text-muted dropdown-toggle p-0" data-bs-toggle="dropdown">
-                                                            All accounts
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end">
-                                                            <li><a class="dropdown-item" href="#">All accounts</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="#" class="text-primary text-decoration-none small">See all</a>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="table-responsive">
-                                                <table class="table table-sm mb-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="border-0 text-muted text-uppercase" style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px;">Ngày</th>
-                                                            <th class="border-0 text-muted text-uppercase" style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px;">Số tiền</th>
-                                                            <th class="border-0 text-muted text-uppercase" style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px;">Nội dung</th>
-                                                            <th class="border-0 text-muted text-uppercase" style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px;">Danh mục</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {% for transaction in recentTransactions %}
-                                                        <tr class="transaction-row">
-                                                            <td class="border-0 py-3">
-                                                                <small class="text-muted">{{ transaction.date }}</small>
-                                                            </td>
-                                                            <td class="border-0 py-3">
-                                                                {% if transaction.type == 'Expense' %}
-                                                                    <span class="text-danger fw-medium">-{{ "{:,.0f}".format(transaction.amount) }}</span>
-                                                                {% else %}
-                                                                    <span class="text-success fw-medium">+{{ "{:,.0f}".format(transaction.amount) }}</span>
-                                                                {% endif %}
-                                                            </td>
-                                                            <td class="border-0 py-3">
-                                                                <div class="d-flex align-items-center">
-                                                                    {{ transaction.item }}
-                                                                </div>
-                                                            </td>
-                                                            <td class="border-0 py-3">
-                                                                <span class="category-badge">{{ transaction.type }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        {% endfor %}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="stat-number text-success mb-2">
+                                    {{ "{:,.0f}".format(totals.income) }} ₫<span class="text-muted"></span>
+                                </div>
+                                <div class="change-indicator text-success">
+                                    <i class="fas fa-arrow-up me-1"></i>
+                                    6.3% <span class="text-muted">so với tháng trước</span>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Right Sidebar -->
-                        <div class="col-4">
-                            <div class="row g-3">
-                                <!-- Budget Widget -->
-                                <div class="col-12">
-                                    <div class="card content-card border-0">
-                                        <div class="card-body p-4">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h6 class="fw-bold mb-0">Budget</h6>
-                                                <i class="fas fa-arrow-up-right text-muted"></i>
-                                            </div>
-                                            
-                                            <div class="text-center mb-4">
-                                                <div class="budget-donut mx-auto mb-3">
-                                                    <svg class="donut-chart" viewBox="0 0 42 42">
-                                                        <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="3"></circle>
-                                                        <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="60 40" stroke-dashoffset="25"></circle>
-                                                    </svg>
-                                                    <div class="donut-value">
-                                                        <div class="donut-amount">$5,950</div>
-                                                        <div class="donut-label">Total for month</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-column gap-2">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #8b5cf6;"></div>
-                                                    <small class="text-muted">Cafe & Restaurants</small>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #6b7280;"></div>
-                                                    <small class="text-muted">Entertainment</small>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #10b981;"></div>
-                                                    <small class="text-muted">Investments</small>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #1f2937;"></div>
-                                                    <small class="text-muted">Food & Groceries</small>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #9ca3af;"></div>
-                                                    <small class="text-muted">Health & Beauty</small>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle me-2" style="width: 8px; height: 8px; background-color: #f59e0b;"></div>
-                                                    <small class="text-muted">Traveling</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="card stat-card border-secondary h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="stat-label">Dòng tiền ra</span>
+                                    <i class="fas fa-arrow-up-right text-muted"></i>
                                 </div>
-                                
-                                <!-- Saving Goals -->
-                                <div class="col-12">
-                                    <div class="card content-card border-0">
-                                        <div class="card-body p-4">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h6 class="fw-bold mb-0">Saving goals</h6>
-                                                <i class="fas fa-arrow-up-right text-muted"></i>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-column gap-3">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <div class="fw-medium mb-1">MacBook Pro</div>
-                                                        <small class="text-primary">75%</small>
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <div class="fw-medium mb-1">$1,650</div>
-                                                        <div class="goal-progress">
-                                                            <div class="goal-progress-fill" style="width: 75%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <div class="fw-medium mb-1">New car</div>
-                                                        <small class="text-primary">42%</small>
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <div class="fw-medium mb-1">$60,000</div>
-                                                        <div class="goal-progress">
-                                                            <div class="goal-progress-fill" style="width: 42%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <div class="fw-medium mb-1">New house</div>
-                                                        <small class="text-primary">3%</small>
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <div class="fw-medium mb-1">$150,000</div>
-                                                        <div class="goal-progress">
-                                                            <div class="goal-progress-fill" style="width: 3%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="stat-number text-danger mb-2">
+                                    {{ "{:,.0f}".format(totals.expenses) }} ₫<span class="text-muted"></span>
+                                </div>
+                                <div class="change-indicator text-danger">
+                                    <i class="fas fa-arrow-up me-1"></i>
+                                    2.4% <span class="text-muted">so với tháng trước</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row g-3">
+
+                    <div class="col-10">
+                        <div class="row g-3">
+
+
+                            <div class="col-12">
+                                <div class="card content-card border-0">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h6 class="fw-bold mb-0">Các giao dịch gần nhất</h6>
+                                        </div>
+                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-sm mb-0 w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="table-header" style="width: 15%;">Ngày</th>
+                                                        <th class="table-header" style="width: 25%;">Số tiền</th>
+                                                        <th class="table-header" style="width: 30%;">Nội dung</th>
+                                                        <th class="table-header" style="width: 20%;">Danh mục</th>
+                                                        <th class="table-header" style="width: 20%;">Giao dịch</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    {% for transaction in recentTransactions %}
+                                                    <tr class="transaction-row">
+                                                        <td class="border-0 py-3">
+                                                            <small class="text-muted">{{ transaction.date }}</small>
+                                                        </td>
+                                                        <td class="border-0 py-3">
+                                                            {% if transaction.type == 'Expense' %}
+                                                                <span class="text-danger fw-medium">-{{ "{:,.0f}".format(transaction.amount) }}₫</span>
+                                                            {% else %}
+                                                                <span class="text-success fw-medium">+{{ "{:,.0f}".format(transaction.amount) }}₫</span>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="border-0 py-3">
+                                                            <div class="d-flex align-items-center">
+                                                                {{ transaction.item }}
+                                                            </div>
+                                                        </td>
+                                                        <td class="border-0 py-3">
+                                                            <span class="category-badge">--</span>  
+                                                        </td>
+                                                        <td class="border-0 py-3">
+                                                            {% if transaction.type == 'Expense' %}
+                                                            <span class="category-badge">Chi tiêu</span>
+                                                            {% else %}
+                                                            <span class="category-badge">Thu nhập</span>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -440,7 +199,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
