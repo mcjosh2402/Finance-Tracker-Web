@@ -3,31 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Transaction</title>
+    <title>Thêm Giao Dịch - Finance Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
-    <form action="/add-transaction" method="POST">
-        <label for="item">Transaction Description:</label>
-        <input type="text" id="item" minlength="1" name="item"><br>
+    <!--MOBILE/TABLET SIDEBAR-->
+    <!--dropdown button-->
+    <div class="mobilerow row-12">
+        <button class="btn btn-primary d-lg-none m-3 ms-4" style="background-color: #6366f1;" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+    <!--dropdown menu-->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav nav-pills flex-column"> 
+                <li class="nav-item mb-1">
+                    <a class="nav-link" href="{{ url_for('home') }}">
+                        <i class="fas fa-th-large me-3"></i> Trang chủ
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link active" href="{{ url_for('addTransaction') }}">
+                        <i class="fas fa-exchange-alt me-3"></i> Thêm giao dịch
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link" href="{{ url_for('viewTransactions') }}">
+                        <i class="fas fa-wallet me-3"></i> Lịch sử giao dịch
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-        <label for="amount">Transaction Amount:</label>
-        <input type="number" id="amount" minlength="1" name="amount" placeholder="in VND"><br>
+        <div class="bottom-nav mt-auto p-4">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item mb-1">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
+                        Hỗ trợ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
+                        Đăng xuất
+                    </a>
+                </li>
+            </ul> 
+        </div>
+    </div>
 
-        <label for="type">Type of transaction: </label>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <div class="col-lg-2 d-none d-lg-block">
+                <div class="sidebar p-4">
+                    <!-- Logo -->
+                    <div class="d-flex align-items-center mb-5">
+                        <div class="logo-circle me-3">F</div>
+                        <h6 class="mb-0 fw-bold text-dark">Account Details</h6>
+                    </div>
+                    
+                    <!-- Side Navigation -->
+                    <ul class="nav nav-pills flex-column"> 
+                        <li class="nav-item mb-1">
+                            <a class="nav-link" href="{{ url_for('home') }}">
+                                <i class="fas fa-th-large me-3" style="width: 16px;"></i>
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a class="nav-link active" href="{{ url_for('addTransaction') }}">
+                                <i class="fas fa-exchange-alt me-3" style="width: 16px;"></i>
+                                Thêm giao dịch
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a class="nav-link" href="{{ url_for('viewTransactions')}}">
+                                <i class="fas fa-wallet me-3" style="width: 16px;"></i>
+                                Lịch sử giao dịch
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Bottom Navigation -->
+                    <div class="bottom-nav mt-auto">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item mb-1">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
+                                    Hỗ trợ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
+                                    Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-12 col-md-10"> 
+                <div class="main-content p-4">
+                    <!--header-->
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <div class="d-flex align-items-center mb-2">
+                                <h1 class="h3 fw-bold text-dark mb-0">Thêm giao dịch mới</h1>
+                            </div>
+                            <p class="text-muted mb-0">Nhập thông tin giao dịch</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Form Card -->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-xl-6">
+                            <div class="card content-card border-0">
+                                <div class="card-body p-sm-2-md-5">
+                                    <form action="/add-transaction" method="POST">
+                                        <!-- Transaction Description -->
+                                        <div class="mb-4">
+                                            <label for="item" class="form-label fw-medium text-dark mb-2">
+                                                <i class="fas fa-edit me-2 text-muted"></i>
+                                                Nội dung giao dịch
+                                            </label>
+                                            <input 
+                                                type="text" 
+                                                class="form-control form-control-lg" 
+                                                id="item" 
+                                                name="item" 
+                                                placeholder="Ví dụ: Mua cà phê, Tiền lương, Ăn trưa..."
+                                                required
+                                                style="border: 2px solid #e9ecef; border-radius: 12px; padding: 16px 20px;">
+                                        </div>
 
-        <label for="Expense">Expense</label>
-        <input type="radio" id ="expense" value="Expense" name="type">
-        <label for="Income">Income</label>
-        <input type="radio" id ="income" value="Income" name="type"><br>
+                                        <!-- Transaction Amount -->
+                                        <div class="mb-4">
+                                            <label for="amount" class="form-label fw-medium text-dark mb-2">
+                                                <i class="fas fa-money-bill-wave me-2 text-muted"></i>
+                                                Số tiền (VND)
+                                            </label>
+                                            <input 
+                                                type="number" 
+                                                class="form-control form-control-lg" 
+                                                id="amount" 
+                                                name="amount" 
+                                                placeholder="0"
+                                                min="0"
+                                                step="1000"
+                                                required
+                                                style="border: 2px solid #e9ecef; border-radius: 12px; padding: 16px 20px;">
+                                        </div>
 
-        <input type="submit">
-    </form>
+                                        <!-- Transaction Type -->
+                                        <div class="mb-5">
+                                            <label class="form-label fw-medium text-dark mb-3">
+                                                <i class="fas fa-tags me-2 text-muted"></i>
+                                                Loại giao dịch
+                                            </label>
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <input type="radio" class="btn-check" name="type" id="expense" value="Expense" required>
+                                                    <label class="btn btn-outline-danger w-100 py-3 border-2 rounded-3" for="expense" style="border-radius: 12px !important;">
+                                                        <i class="fas fa-minus-circle mb-2 d-block fs-4"></i>
+                                                        <div class="fw-medium">Chi tiêu</div>
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="radio" class="btn-check" name="type" id="income" value="Income" required>
+                                                    <label class="btn btn-outline-success w-100 py-3 border-2 rounded-3" for="income" style="border-radius: 12px !important;">
+                                                        <i class="fas fa-plus-circle mb-2 d-block fs-4"></i>
+                                                        <div class="fw-medium">Thu nhập</div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
 
-    <nav class="navbar">
-        <ul>
-            <li><a href="{{ url_for('viewTransactions') }}">View Transactions</a></li>
-            <li><a href="{{ url_for('home') }}">Back to menu</a></li>
-        </ul>
-    </nav>
+                                        <!-- Action Buttons -->
+                                        <div class="d-flex gap-3">
+                                            <button type="submit" class="btn btn-primary flex-fill py-3 rounded-3" style="background: #6366f1; border: none;">
+                                                <i class="fas fa-save me-2"></i>
+                                                Lưu giao dịch
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
