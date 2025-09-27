@@ -9,12 +9,31 @@ body {
 }
 
 .sidebar {
-    background: #f7f8fa;
+    background: #f4f4f2;
     flex-direction: column;
     display: flex;
     border-right: 3px solid #e9ecef;
     min-height: 100vh;
 }
+
+.bg-expense {
+    width: 32px;
+    height: 32px;
+    background: #fee2e2; /* light red */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-income {
+    width: 32px;
+    height: 32px;
+    background: #f0fdf4; /* light green */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .logo-circle {
     width: 32px;
@@ -24,7 +43,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #f4f4f2;
     font-weight: 600;
     font-size: 14px;
 }
@@ -41,12 +60,12 @@ body {
 
 .nav-pills .nav-link:hover {
     background-color: #6366f1;
-    color: white;
+    color: #f4f4f2;
 }
 
 .nav-pills .nav-link.active {
     background-color: #6366f1;
-    color: white;
+    color: #f4f4f2;
 }
 
 .main-content {
@@ -55,6 +74,7 @@ body {
 }
 
 .stat-card {
+    background-color: white;
     border-width: 1px;
     border-style: solid;
     border-radius: 15px;
