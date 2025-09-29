@@ -10,60 +10,25 @@
 </head>
 <body>
     <div class="container-fluid p-0">
-        <!--MOBILE/TABLET SIDEBAR-->
-        <!--dropdown button-->
-        <div class="mobilerow row-12">
-            <button class="btn btn-primary d-lg-none m-3 ms-4" style="background-color: #6366f1;" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+        <!-- Mobile Menu Button -->
+        <div class="mobilerow">
+            <button class="btn btn-primary d-lg-none m-3 ms-4 mobile-menu-btn" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
-        <!--dropdown menu-->
+        <!-- Mobile Sidebar -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body">
-                <ul class="nav nav-pills flex-column"> 
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="{{ url_for('home') }}">
-                            <i class="fas fa-th-large me-3"></i> Trang chủ
-                        </a>
-                    </li>
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="{{ url_for('addTransaction') }}">
-                            <i class="fas fa-exchange-alt me-3"></i> Thêm giao dịch
-                        </a>
-                    </li>
-                    <li class="nav-item mb-1">
-                        <a class="nav-link active" href="{{ url_for('viewTransactions') }}">
-                            <i class="fas fa-wallet me-3"></i> Lịch sử giao dịch
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-nav mt-auto p-4">
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
-                            Hỗ trợ
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
-                            Đăng xuất
-                        </a>
-                    </li>
-                </ul> 
+                {% include 'sidebar-content.html' with context %}
             </div>
         </div>
 
-
         <div class="row g-0">
-            <!-- Sidebar -->
+            <!-- Desktop Sidebar -->
             <div class="col-lg-2 d-none d-lg-block">
                 <div class="sidebar p-4">
                     <!-- Logo -->
@@ -72,65 +37,26 @@
                         <h6 class="mb-0 fw-bold text-dark">Account Details</h6>
                     </div>
                     
-                    <!-- Side Navigation -->
-                    <ul class="nav nav-pills flex-column"> 
-                        <li class="nav-item mb-1">
-                            <a class="nav-link" href="{{ url_for('home') }}">
-                                <i class="fas fa-th-large me-3" style="width: 16px;"></i>
-                                Trang chủ
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a class="nav-link" href="{{ url_for('addTransaction') }}">
-                                <i class="fas fa-exchange-alt me-3" style="width: 16px;"></i>
-                                Thêm giao dịch
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a class="nav-link active" href="{{ url_for('viewTransactions') }}">
-                                <i class="fas fa-wallet me-3" style="width: 16px;"></i>
-                                Lịch sử giao dịch
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <!-- Bottom Navigation -->
-                    <div class="bottom-nav mt-auto">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item mb-1">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
-                                    Hỗ trợ
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
-                                    Đăng xuất
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Navigation -->
+                    {% include 'sidebar-content.html' with context %}
                 </div>
             </div>
             
             <!-- Main Content -->
             <div class="col-12 col-lg-10"> 
                 <div class="main-content p-4">
-                    <!--header-->
+                    <!-- Header -->
                     <div class="d-flex justify-content-between align-items-start mb-4">
                         <div>
-                            <div class="d-flex align-items-center mb-2">
-                                <h1 class="h3 fw-bold text-dark mb-0">Lịch sử giao dịch</h1>
-                            </div>
+                            <h1 class="h3 fw-bold text-dark mb-0">Lịch sử giao dịch</h1>
                             <p class="text-muted mb-0">Tất cả các giao dịch đã thực hiện</p>
                         </div>
                     </div>
                     
-                    <!-- Summary Stats Row -->
+                    <!-- Summary Stats -->
                     <div class="row g-3 mb-4">
                         <div class="col-12 col-sm-6 col-lg-4">
-                            <div class="stat-card">
+                            <div class="card stat-card border-secondary h-100">
                                 <div class="card-body text-center p-3">
                                     <h5 class="text-success mb-1">{{ transactions|selectattr("type", "equalto", "Income")|list|length }}</h5>
                                     <small class="text-muted">Giao dịch thu</small>
@@ -138,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-lg-4">
-                            <div class="stat-card">
+                            <div class="card stat-card border-secondary h-100">
                                 <div class="card-body text-center p-3">
                                     <h5 class="text-danger mb-1">{{ transactions|selectattr("type", "equalto", "Expense")|list|length }}</h5>
                                     <small class="text-muted">Giao dịch chi</small>
@@ -146,7 +72,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-lg-4">
-                            <div class="stat-card">
+                            <div class="card stat-card border-secondary h-100">
                                 <div class="card-body text-center p-3">
                                     <h5 class="text-dark mb-1">{{ transactions|length }}</h5>
                                     <small class="text-muted">Tổng giao dịch</small>
@@ -155,10 +81,10 @@
                         </div>
                     </div>
 
-                    <!-- Transactions Table Card -->
+                    <!-- Transactions Table -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="card content-card border-0">
+                            <div class="card tableCard border-secondary">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="fw-bold mb-0">
@@ -178,26 +104,27 @@
                                     </div>
                                     
                                     <div class="table-responsive">
-                                        <table class="table table-hover mb-0">
+                                        <table class="table table-hover mb-0 transactions-table">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th class="border-0 text-muted text-uppercase fw-medium" style="font-size: 11px; letter-spacing: 0.5px;">
+                                                    <th class="border-0 text-muted text-uppercase fw-medium table-header">
                                                         <i class="fas fa-calendar-alt me-1"></i>
                                                         Ngày
                                                     </th>
-                                                    <th class="border-0 text-muted text-uppercase fw-medium" style="font-size: 11px; letter-spacing: 0.5px;">
+                                                    <th class="border-0 text-muted text-uppercase fw-medium table-header">
                                                         <i class="fas fa-money-bill-wave me-1"></i>
                                                         Số tiền
                                                     </th>
-                                                    <th class="border-0 text-muted text-uppercase fw-medium" style="font-size: 11px; letter-spacing: 0.5px;">
+                                                    <th class="border-0 text-muted text-uppercase fw-medium table-header">
                                                         <i class="fas fa-edit me-1"></i>
                                                         Nội dung
                                                     </th>
-                                                    <th class="border-0 text-muted text-uppercase fw-medium" style="font-size: 11px; letter-spacing: 0.5px;">
+                                                    <th class="border-0 text-muted text-uppercase fw-medium table-header">
                                                         <i class="fas fa-tags me-1"></i>
                                                         Loại
                                                     </th>
-                                                    <th class="border-0 text-muted text-uppercase fw-medium" style="font-size: 11px; letter-spacing: 0.5px;">
+                                                    <th class="border-0 text-muted text-uppercase fw-medium table-header">
+                                                        Thao tác
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -212,17 +139,14 @@
                                                                 </div>
                                                                 <div>
                                                                     <div class="fw-medium">{{ transaction.date }}</div>
-                                                                    <small class="text-muted">{{ transaction.date }}</small>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td class="border-0 py-3">
                                                             {% if transaction.type == 'Expense' %}
                                                                 <div class="text-danger fw-bold fs-5">-{{ "{:,.0f}".format(transaction.amount) }}₫</div>
-                                                                <small class="text-muted">Chi tiêu</small>
                                                             {% else %}
                                                                 <div class="text-success fw-bold fs-5">+{{ "{:,.0f}".format(transaction.amount) }}₫</div>
-                                                                <small class="text-muted">Thu nhập</small>
                                                             {% endif %}
                                                         </td>
                                                         <td class="border-0 py-3">
@@ -233,7 +157,7 @@
                                                                 </div>
                                                                 <div>
                                                                     <div class="fw-medium">{{ transaction.item }}</div>
-                                                                    <small class="text-muted">{{ transaction.type }}</small>
+                                                                    <small class="text-muted">{{ transaction.category }}</small>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -286,6 +210,7 @@
                                     <!-- Pagination -->
                                     <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
                                         <div class="text-muted">
+                                            Hiển thị {{ transactions|length }} giao dịch
                                         </div>
                                         <nav>
                                             <ul class="pagination pagination-sm mb-0">
@@ -293,7 +218,7 @@
                                                     <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
                                                 </li>
                                                 <li class="page-item active">
-                                                    <a class    ="page-link" href="#">1</a>
+                                                    <a class="page-link" href="#">1</a>
                                                 </li>
                                                 <li class="page-item disabled">
                                                     <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>

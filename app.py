@@ -1,9 +1,24 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import json
 from datetime import datetime
 import os
 
-def saveTransaction(item, amount, type):
+def getCategories():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    fileName = os.path.join(base_dir, "data", "categories.json")
+    
+    try:
+        with open(fileName, "r", encoding='utf-8') as file:
+            categories = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        # Default categories if file doesn't exist
+        categories = {
+            "expense_categories": ["Ăn uống", "Di chuyển", "Khác"],
+            "income_categories": ["Lương", "Khác"]
+        }
+    return categories
+
+def saveTransaction(item, amount, type, category):
     # setup file paths and ensure /data/transactions.json exist 
     base_dir = os.path.dirname(os.path.abspath(__file__)) # get the path of this file
     fileName = os.path.join(base_dir, "data", "transactions.json") # create the full path to .../data/transactions.json
@@ -13,7 +28,8 @@ def saveTransaction(item, amount, type):
         "item": item,
         "amount": float(amount),
         "date": datetime.today().strftime("%Y-%m-%d"), # convert datetime obj to string
-        "type": type
+        "type": type,
+        "category": category
     }
 
     try:
@@ -25,7 +41,7 @@ def saveTransaction(item, amount, type):
 
     transactions.append(expense)
     with open(fileName, "w") as file:
-        json.dump(transactions, file, indent=2) # write python dict to json format
+        json.dump(transactions, file, indent=2, ensure_ascii=False) # write python dict to json format
 
 def getTransactions():
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -62,32 +78,35 @@ def getRecentTransactions(limit=5):
     transactions = getTransactions()
     return sorted(transactions, key=lambda x: x['date'], reverse=True)[:limit]
 
-
-
 app = Flask(__name__) # create a webpage named app
 
 @app.route('/') # main landing page
 def home():
     totals = totalCalculation() # calculation dict
     recentTransactions = getRecentTransactions(3) # show i number of recent transactions
-    return render_template('home.html', totals = totals, recentTransactions = recentTransactions)
+    return render_template('home.html', totals = totals, recentTransactions = recentTransactions, active_page = 'home')
 
-@app.route('/add-transaction', methods=['GET', 'POST']) # add transaction page
+@app.route('/add-transaction', methods=['GET', 'POST'])
 def addTransaction():
+    categories = getCategories()
     if request.method == 'POST':
-        # get the submitted form info that fit the dictionary's key
         item = request.form['item']
         amount = request.form['amount']
         type = request.form['type']
+        category = request.form['category']
+        saveTransaction(item, amount, type, category)
+        return redirect(url_for('home'))
 
-        saveTransaction(item, amount, type)
+    return render_template('add-transaction.html', 
+                         categories=categories,
+                         expense_categories=categories.get("expense_categories", []),
+                         income_categories=categories.get("income_categories", []),
+                         active_page = 'addTransaction')
 
-    return render_template('add-transaction.html') # render add-expense.html 
 
 @app.route('/view-transactions', methods=['GET'])
 def viewTransactions():
-
-    return render_template('view-transactions.html', transactions = getTransactions())
+    return render_template('view-transactions.html', transactions = getTransactions(), active_page = 'viewTransactions')
 
 if __name__ == "__main__":
     app.run(debug=True)

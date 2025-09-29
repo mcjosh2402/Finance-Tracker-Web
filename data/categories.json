@@ -1,0 +1,15 @@
+{
+  "expense_categories": [
+    "Ăn uống",
+    "Di chuyển", 
+    "Mua sắm",
+    "Giải trí",
+    "Khác"
+  ],
+  "income_categories": [
+    "Lương",
+    "Bán hàng", 
+    "Cho thuê",
+    "Khác"
+  ]
+}

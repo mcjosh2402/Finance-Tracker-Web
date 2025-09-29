@@ -9,60 +9,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
-    <!--MOBILE/TABLET SIDEBAR-->
-    <!--dropdown button-->
-    <div class="mobilerow row-12">
-        <button class="btn btn-primary d-lg-none m-3 ms-4" style="background-color: #6366f1;" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-    
-    <!--dropdown menu-->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav nav-pills flex-column"> 
-                <li class="nav-item mb-1">
-                    <a class="nav-link" href="{{ url_for('home') }}">
-                        <i class="fas fa-th-large me-3"></i> Trang chủ
-                    </a>
-                </li>
-                <li class="nav-item mb-1">
-                    <a class="nav-link active" href="{{ url_for('addTransaction') }}">
-                        <i class="fas fa-exchange-alt me-3"></i> Thêm giao dịch
-                    </a>
-                </li>
-                <li class="nav-item mb-1">
-                    <a class="nav-link" href="{{ url_for('viewTransactions') }}">
-                        <i class="fas fa-wallet me-3"></i> Lịch sử giao dịch
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="bottom-nav mt-auto p-4">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item mb-1">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
-                        Hỗ trợ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
-                        Đăng xuất
-                    </a>
-                </li>
-            </ul> 
-        </div>
-    </div>
-
     <div class="container-fluid p-0">
+        <!-- Mobile Menu Button -->
+        <div class="mobilerow">
+            <button class="btn btn-primary d-lg-none m-3 ms-4 mobile-menu-btn" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Sidebar -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                {% include 'sidebar-content.html' with context %}
+            </div>
+        </div>
+
         <div class="row g-0">
-            <!-- Sidebar -->
+            <!-- Desktop Sidebar -->
             <div class="col-lg-2 d-none d-lg-block">
                 <div class="sidebar p-4">
                     <!-- Logo -->
@@ -71,57 +37,18 @@
                         <h6 class="mb-0 fw-bold text-dark">Account Details</h6>
                     </div>
                     
-                    <!-- Side Navigation -->
-                    <ul class="nav nav-pills flex-column"> 
-                        <li class="nav-item mb-1">
-                            <a class="nav-link" href="{{ url_for('home') }}">
-                                <i class="fas fa-th-large me-3" style="width: 16px;"></i>
-                                Trang chủ
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a class="nav-link active" href="{{ url_for('addTransaction') }}">
-                                <i class="fas fa-exchange-alt me-3" style="width: 16px;"></i>
-                                Thêm giao dịch
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a class="nav-link" href="{{ url_for('viewTransactions')}}">
-                                <i class="fas fa-wallet me-3" style="width: 16px;"></i>
-                                Lịch sử giao dịch
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <!-- Bottom Navigation -->
-                    <div class="bottom-nav mt-auto">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item mb-1">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
-                                    Hỗ trợ
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
-                                    Đăng xuất
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Navigation -->
+                    {% include 'sidebar-content.html' with context %}
                 </div>
             </div>
             
             <!-- Main Content -->
-            <div class="col-12 col-md-10"> 
+            <div class="col-12 col-lg-10"> 
                 <div class="main-content p-4">
-                    <!--header-->
+                    <!-- Header -->
                     <div class="d-flex justify-content-between align-items-start mb-4">
                         <div>
-                            <div class="d-flex align-items-center mb-2">
-                                <h1 class="h3 fw-bold text-dark mb-0">Thêm giao dịch mới</h1>
-                            </div>
+                            <h1 class="h3 fw-bold text-dark mb-0">Thêm giao dịch mới</h1>
                             <p class="text-muted mb-0">Nhập thông tin giao dịch</p>
                         </div>
                     </div>
@@ -129,8 +56,8 @@
                     <!-- Form Card -->
                     <div class="row justify-content-center">
                         <div class="col-lg-8 col-xl-6">
-                            <div class="card content-card border-0">
-                                <div class="card-body p-sm-2-md-5">
+                            <div class="card content-card border-0" style="background-color: #fafafa;">
+                                <div class="card-body p-4">
                                     <form action="/add-transaction" method="POST">
                                         <!-- Transaction Description -->
                                         <div class="mb-4">
@@ -140,12 +67,11 @@
                                             </label>
                                             <input 
                                                 type="text" 
-                                                class="form-control form-control-lg" 
+                                                class="form-control form-control-lg form-input" 
                                                 id="item" 
                                                 name="item" 
-                                                placeholder="Ví dụ: Mua cà phê, Tiền lương, Ăn trưa..."
-                                                required
-                                                style="border: 2px solid #e9ecef; border-radius: 12px; padding: 16px 20px;">
+                                                placeholder="Mua cà phê, tiền lương, ăn trưa..."
+                                                required>
                                         </div>
 
                                         <!-- Transaction Amount -->
@@ -156,18 +82,17 @@
                                             </label>
                                             <input 
                                                 type="number" 
-                                                class="form-control form-control-lg" 
+                                                class="form-control form-control-lg form-input" 
                                                 id="amount" 
                                                 name="amount" 
                                                 placeholder="0"
                                                 min="0"
                                                 step="1000"
-                                                required
-                                                style="border: 2px solid #e9ecef; border-radius: 12px; padding: 16px 20px;">
+                                                required>
                                         </div>
 
                                         <!-- Transaction Type -->
-                                        <div class="mb-5">
+                                        <div class="mb-4">
                                             <label class="form-label fw-medium text-dark mb-3">
                                                 <i class="fas fa-tags me-2 text-muted"></i>
                                                 Loại giao dịch
@@ -175,14 +100,14 @@
                                             <div class="row g-3">
                                                 <div class="col-6">
                                                     <input type="radio" class="btn-check" name="type" id="expense" value="Expense" required>
-                                                    <label class="btn btn-outline-danger w-100 py-3 border-2 rounded-3" for="expense" style="border-radius: 12px !important;">
+                                                    <label class="btn btn-outline-danger w-100 py-3 border-2 rounded-3 transaction-type-btn" for="expense">
                                                         <i class="fas fa-minus-circle mb-2 d-block fs-4"></i>
                                                         <div class="fw-medium">Chi tiêu</div>
                                                     </label>
                                                 </div>
                                                 <div class="col-6">
                                                     <input type="radio" class="btn-check" name="type" id="income" value="Income" required>
-                                                    <label class="btn btn-outline-success w-100 py-3 border-2 rounded-3" for="income" style="border-radius: 12px !important;">
+                                                    <label class="btn btn-outline-success w-100 py-3 border-2 rounded-3 transaction-type-btn" for="income">
                                                         <i class="fas fa-plus-circle mb-2 d-block fs-4"></i>
                                                         <div class="fw-medium">Thu nhập</div>
                                                     </label>
@@ -190,9 +115,25 @@
                                             </div>
                                         </div>
 
+                                        <!-- Category -->
+                                        <div class="mb-4">
+                                            <label for="category" class="form-label fw-medium text-dark mb-2">
+                                                <i class="fa-solid fa-layer-group me-2 text-muted"></i>
+                                                Danh mục
+                                            </label>
+                                            <select
+                                                class="form-control form-control-lg form-input category-dropdown" 
+                                                id="category" 
+                                                name="category" 
+                                                required
+                                                disabled>
+                                                <option value="">Vui lòng chọn loại giao dịch trước</option>
+                                            </select>
+                                        </div>
+
                                         <!-- Action Buttons -->
                                         <div class="d-flex gap-3">
-                                            <button type="submit" class="btn btn-primary flex-fill py-3 rounded-3" style="background: #6366f1; border: none;">
+                                            <button type="submit" class="btn btn-primary flex-fill py-3 rounded-3 submit-btn">
                                                 <i class="fas fa-save me-2"></i>
                                                 Lưu giao dịch
                                             </button>

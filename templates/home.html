@@ -9,127 +9,50 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
-    <div class="container-fluid p-0"> <!--foundation-->
-        <!--MOBILE/TABLET SIDEBAR-->
-        <!--dropdown button-->
-        <div class="mobilerow row-12">
-            <button class="btn btn-primary d-lg-none m-3 ms-4" style="background-color: #6366f1;" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+    <div class="container-fluid p-0">
+        <!-- Mobile Menu Button -->
+        <div class="mobilerow">
+            <button class="btn btn-primary d-lg-none m-3 ms-4 mobile-menu-btn" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
-        <!--dropdown menu-->
+        <!-- Mobile Sidebar -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body">
-                <ul class="nav nav-pills flex-column"> 
-                    <li class="nav-item mb-1">
-                        <a class="nav-link active" href="{{ url_for('home') }}">
-                            <i class="fas fa-th-large me-3"></i> Trang chủ
-                        </a>
-                    </li>
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="{{ url_for('addTransaction') }}">
-                            <i class="fas fa-exchange-alt me-3"></i> Thêm giao dịch
-                        </a>
-                    </li>
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="{{ url_for('viewTransactions') }}">
-                            <i class="fas fa-wallet me-3"></i> Lịch sử giao dịch
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-nav mt-auto p-4">
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
-                            Hỗ trợ
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
-                            Đăng xuất
-                        </a>
-                    </li>
-                </ul> 
+                {% include 'sidebar-content.html' with context %}
             </div>
         </div>
 
-        <!--DESKTOP SIDEBAR-->
-        <div class="row g-0"> <!--full page row to store col-->
-            <!-- Sidebar -->
+        <div class="row g-0">
+            <!-- Desktop Sidebar -->
             <div class="col-lg-2 d-none d-lg-block">
                 <div class="sidebar p-4">
-                    <!--logo-->
+                    <!-- Logo -->
                     <div class="d-flex align-items-center mb-5">
                         <div class="logo-circle me-3">F</div> 
-                        <h6 class="mb-0 fw-bold text-dark">Account Details</h6> 
+                        <h6 class="mb-0 fw-bold text-dark">Coming Soon!</h6> 
                     </div>
 
-                    <!--side buttons-->
-                    <ul class="nav nav-pills flex-column"> 
-                        <li class="nav-item mb-1">
-                            <a class="nav-link active" href="{{ url_for('home') }}">
-                                <i class="fas fa-th-large me-3" style="width: 16px;"></i>
-                                Trang chủ
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a class="nav-link" href="{{ url_for('addTransaction') }}">
-                                <i class="fas fa-exchange-alt me-3" style="width: 16px;"></i>
-                                Thêm giao dịch
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a class="nav-link" href="{{ url_for('viewTransactions')}}">
-                                <i class="fas fa-wallet me-3" style="width: 16px;"></i>
-                                Lịch sử giao dịch
-                            </a>
-                        </li>
-                        <!--more to be added-->
-                    </ul>
-                    
-
-                    <div class="bottom-nav mt-auto">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item mb-1">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-question-circle me-3" style="width: 16px;"></i>
-                                    Hỗ trợ
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-sign-out-alt me-3" style="width: 16px;"></i>
-                                    Đăng xuất
-                                </a>
-                            </li>
-                        </ul> 
-                    </div>
+                    <!-- Navigation -->
+                    {% include 'sidebar-content.html' with context %}
                 </div>
             </div>
             
             <!-- Main Content -->
             <div class="col-12 col-lg-10">
-                <div class="main-content p-4"> <!--padding 4rem-->
+                <div class="main-content p-4">
+                    <!-- Header -->
                     <div class="d-flex justify-content-between align-items-start mb-4">
-                        <div>
-                            <div class="d-flex align-items-center mb-2">
-                                <h1 class="h3 fw-bold text-dark mb-0">Welcome back, User!</h1>
-                            </div>
-                            <p class="text-muted mb-0">It is the best time to manage your finances</p>
-                        </div>
+                        <h1 class="h2 fw-bold text-dark mb-0">Welcome back, User!</h1>
                     </div>
                     
-                    <!--stat cards-->
+                    <!-- Statistics Cards -->
                     <div class="row g-3 mb-4">
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
                             <div class="card stat-card border-secondary h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-start mb-3">
@@ -137,17 +60,15 @@
                                         <i class="fas fa-arrow-up-right text-muted"></i>
                                     </div>
                                     <div class="stat-number text-dark mb-2">
-                                        {{ "{:,.0f}".format(totals.balance) }} ₫<span class="text-muted"></span>
+                                        {{ "{:,.0f}".format(totals.balance) }} ₫
                                     </div>
                                     <div class="change-indicator text-success">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        12.1% <span class="text-muted">so với tháng trước</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
                             <div class="card stat-card border-secondary h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-start mb-3">
@@ -155,17 +76,15 @@
                                         <i class="fas fa-arrow-up-right text-muted"></i>
                                     </div>
                                     <div class="stat-number text-success mb-2">
-                                        {{ "{:,.0f}".format(totals.income) }} ₫<span class="text-muted"></span>
+                                        {{ "{:,.0f}".format(totals.income) }} ₫
                                     </div>
                                     <div class="change-indicator text-success">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        6.3% <span class="text-muted">so với tháng trước</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
                             <div class="card stat-card border-secondary h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-start mb-3">
@@ -173,72 +92,82 @@
                                         <i class="fas fa-arrow-up-right text-muted"></i>
                                     </div>
                                     <div class="stat-number text-danger mb-2">
-                                        {{ "{:,.0f}".format(totals.expenses) }} ₫<span class="text-muted"></span>
+                                        {{ "{:,.0f}".format(totals.expenses) }} ₫
                                     </div>
                                     <div class="change-indicator text-danger">
-                                        <i class="fas fa-arrow-up me-1"></i>
-                                        2.4% <span class="text-muted">so với tháng trước</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!--recent transactions-->
-                    <div class="row g-3">
-                        <div class="col-12 col-md-10">
-                            <div class="col-12">
-                                <div class="card content-card border-0">
-                                    <div class="card-body p-4">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <h6 class="fw-bold mb-0">Các giao dịch gần nhất</h6>
-                                        </div>
-                                        
-                                        <div class="table-responsive">
-                                            <table class="table table-sm mb-0 w-100">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="table-header">Ngày</th>
-                                                        <th class="table-header">Số tiền</th>
-                                                        <th class="table-header">Nội dung</th>
-                                                        <th class="table-header">Danh mục</th>
-                                                        <th class="table-header">Giao dịch</th>
-                                                    </tr>
-                                                </thead>
 
-                                                <tbody>
-                                                    {% for transaction in recentTransactions %}
-                                                    <tr class="transaction-row">
-                                                        <td class="border-0 py-3">
-                                                            <small class="text-muted">{{ transaction.date }}</small>
-                                                        </td>
-                                                        <td class="border-0 py-3">
-                                                            {% if transaction.type == 'Expense' %}
-                                                                <span class="text-danger fw-medium">-{{ "{:,.0f}".format(transaction.amount) }}₫</span>
-                                                            {% else %}
-                                                                <span class="text-success fw-medium">+{{ "{:,.0f}".format(transaction.amount) }}₫</span>
-                                                            {% endif %}
-                                                        </td>
-                                                        <td class="border-0 py-3">
-                                                            <div class="d-flex align-items-center">
-                                                                {{ transaction.item }}
-                                                            </div>
-                                                        </td>
-                                                        <td class="border-0 py-3">
-                                                            <span class="category-badge">--</span>  
-                                                        </td>
-                                                        <td class="border-0 py-3">
-                                                            {% if transaction.type == 'Expense' %}
-                                                            <span class="category-badge">Chi tiêu</span>
-                                                            {% else %}
-                                                            <span class="category-badge">Thu nhập</span>
-                                                            {% endif %}
-                                                        </td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="card stat-card border-secondary h-100">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <span class="stat-label">Hôm nay là ngày</span>
+                                        <i class="fas fa-arrow-up-right text-muted"></i>
+                                    </div>
+                                    <div class="stat-number text-dark mb-2">
+                                        {{ "{:,.0f}".format(totals.balance) }} ₫
+                                    </div>
+                                    <div class="change-indicator text-success">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    
+
+                    <!-- Recent Transactions -->
+                    <div class="row g-3"> <!--space between columns-->
+                        <div class="col-12 col-md-8">
+                            <div class="card tableCard border-secondary">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="fw-bold mb-0">Các giao dịch gần nhất</h6>
+                                    </div>  
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-sm mb-0 w-100 transactions-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="table-header">Ngày</th>
+                                                    <th class="table-header">Số tiền</th>
+                                                    <th class="table-header">Nội dung</th>
+                                                    <th class="table-header">Danh mục</th>
+                                                    <th class="table-header">Giao dịch</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for transaction in recentTransactions %}
+                                                <tr class="transaction-row">
+                                                    <td class="py-3">
+                                                        <small class="text-muted">{{ transaction.date }}</small>
+                                                    </td>
+                                                    <td class="py-3">
+                                                        {% if transaction.type == 'Expense' %}
+                                                            <span class="text-danger fw-medium">-{{ "{:,.0f}".format(transaction.amount) }}₫</span>
+                                                        {% else %}
+                                                            <span class="text-success fw-medium">+{{ "{:,.0f}".format(transaction.amount) }}₫</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="py-3">
+                                                        {{ transaction.item }}
+                                                    </td>
+                                                    <td class="py-3">
+                                                        <span class="category-badge">{{ transaction.category }}</span>  
+                                                    </td>
+                                                    <td class="py-3">
+                                                        {% if transaction.type == 'Expense' %}
+                                                        <span class="category-badge">Chi tiêu</span>
+                                                        {% else %}
+                                                        <span class="category-badge">Thu nhập</span>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

@@ -3,24 +3,28 @@
     "item": "Salary",
     "amount": 1000000.0,
     "date": "2025-09-19",
-    "type": "Income"
+    "type": "Income",
+    "category": "Something"
   },
   {
     "item": "RTX 4060",
     "amount": 300000.0,
     "date": "2025-09-19",
-    "type": "Expense"
+    "type": "Expense",
+    "category": "Something"
   },
   {
     "item": "RX 9060 XT",
     "amount": 200000.0,
     "date": "2025-09-19",
-    "type": "Expense"
+    "type": "Expense",
+    "category": "Something"
   },
   {
-    "item": "\u0102n tr\u01b0a",
-    "amount": 20000.0,
-    "date": "2025-09-23",
-    "type": "Expense"
+    "item": "Dinner",
+    "amount": 30000.0,
+    "date": "2025-09-28",
+    "type": "Expense",
+    "category": "Something"
   }
 ]

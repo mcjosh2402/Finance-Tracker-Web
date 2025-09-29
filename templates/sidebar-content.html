@@ -1,0 +1,39 @@
+<!-- Main Navigation -->
+<ul class="nav nav-pills flex-column"> 
+    <li class="nav-item mb-1">
+        <a class="nav-link {{ 'active' if active_page == 'home' else '' }}" href="{{ url_for('home') }}">
+            <i class="fas fa-th-large me-3 nav-icon"></i>
+            Trang chủ
+        </a>
+    </li>
+    <li class="nav-item mb-1">
+        <a class="nav-link {{ 'active' if active_page == 'addTransaction' else '' }}" href="{{ url_for('addTransaction') }}">
+            <i class="fas fa-exchange-alt me-3 nav-icon"></i>
+            Thêm giao dịch
+        </a>
+    </li>
+    <li class="nav-item mb-1">
+        <a class="nav-link {{ 'active' if active_page == 'viewTransactions' else '' }}" href="{{ url_for('viewTransactions') }}">
+            <i class="fas fa-wallet me-3 nav-icon"></i>
+            Lịch sử giao dịch
+        </a>
+    </li>
+</ul>
+
+<!-- Bottom Navigation -->
+<div class="bottom-nav mt-auto">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item mb-1">
+            <a class="nav-link" href="#">
+                <i class="fas fa-question-circle me-3 nav-icon"></i>
+                Hỗ trợ
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-sign-out-alt me-3 nav-icon"></i>
+                Đăng xuất
+            </a>
+        </li>
+    </ul> 
+</div>
