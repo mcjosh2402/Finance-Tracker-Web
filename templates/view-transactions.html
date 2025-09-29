@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch Sử Giao Dịch - Finance Tracker</title>
+    <title>Lịch Sử Giao Dịch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
     <div class="container-fluid p-0">
-        <!-- Mobile Menu Button -->
+        <!-- hamburger menu -->
         <div class="mobilerow">
             <button class="btn btn-primary d-lg-none m-3 ms-4 mobile-menu-btn" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
-        <!-- Mobile Sidebar -->
+        <!-- mobile sidebar -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -28,24 +28,23 @@
         </div>
 
         <div class="row g-0">
-            <!-- Desktop Sidebar -->
+            <!-- desktop sidebar -->
             <div class="col-lg-2 d-none d-lg-block">
                 <div class="sidebar p-4">
-                    <!-- Logo -->
                     <div class="d-flex align-items-center mb-5">
                         <div class="logo-circle me-3">F</div>
                         <h6 class="mb-0 fw-bold text-dark">Account Details</h6>
                     </div>
                     
-                    <!-- Navigation -->
+                    <!-- navigation -->
                     {% include 'sidebar-content.html' with context %}
                 </div>
             </div>
             
-            <!-- Main Content -->
+            <!-- main content -->
             <div class="col-12 col-lg-10"> 
                 <div class="main-content p-4">
-                    <!-- Header -->
+                    <!-- header -->
                     <div class="d-flex justify-content-between align-items-start mb-4">
                         <div>
                             <h1 class="h3 fw-bold text-dark mb-0">Lịch sử giao dịch</h1>
@@ -53,7 +52,7 @@
                         </div>
                     </div>
                     
-                    <!-- Summary Stats -->
+                    <!-- stats -->
                     <div class="row g-3 mb-4">
                         <div class="col-12 col-sm-6 col-lg-4">
                             <div class="card stat-card border-secondary h-100">
@@ -207,7 +206,7 @@
                                     </div>
 
                                     {% if transactions %}
-                                    <!-- Pagination -->
+                                    <!-- bottom nav -->
                                     <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
                                         <div class="text-muted">
                                             Hiển thị {{ transactions|length }} giao dịch

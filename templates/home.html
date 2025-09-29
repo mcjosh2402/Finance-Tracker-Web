@@ -10,14 +10,14 @@
 </head>
 <body>
     <div class="container-fluid p-0">
-        <!-- Mobile Menu Button -->
+        <!-- hamburger button -->
         <div class="mobilerow">
             <button class="btn btn-primary d-lg-none m-3 ms-4 mobile-menu-btn" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
-        <!-- Mobile Sidebar -->
+        <!-- mobile sidebar -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -28,29 +28,31 @@
         </div>
 
         <div class="row g-0">
-            <!-- Desktop Sidebar -->
+            <!-- desktop sidebar -->
             <div class="col-lg-2 d-none d-lg-block">
                 <div class="sidebar p-4">
-                    <!-- Logo -->
                     <div class="d-flex align-items-center mb-5">
                         <div class="logo-circle me-3">F</div> 
                         <h6 class="mb-0 fw-bold text-dark">Coming Soon!</h6> 
                     </div>
 
-                    <!-- Navigation -->
+                    <!-- navigation -->
                     {% include 'sidebar-content.html' with context %}
                 </div>
             </div>
             
-            <!-- Main Content -->
+            <!-- main content -->
             <div class="col-12 col-lg-10">
                 <div class="main-content p-4">
-                    <!-- Header -->
-                    <div class="d-flex justify-content-between align-items-start mb-4">
-                        <h1 class="h2 fw-bold text-dark mb-0">Welcome back, User!</h1>
+                    <!-- header -->
+                    <div>
+                        <div class="d-flex align-items-center mb-2">
+                            <h1 class="h3 fw-bold text-dark mb-0">Bảng thống kê thu chi</h1>
+                        </div>
+                        <p class="text-muted mb-3">Quản lí tài chính thật dễ dàng!</p>
                     </div>
                     
-                    <!-- Statistics Cards -->
+                    <!-- stat cards -->
                     <div class="row g-3 mb-4">
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="card stat-card border-secondary h-100">
@@ -103,14 +105,11 @@
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="card stat-card border-secondary h-100">
                                 <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <span class="stat-label">Hôm nay là ngày</span>
-                                        <i class="fas fa-arrow-up-right text-muted"></i>
+                                    <div class="stat-number text-dark mb-2" id="current-date">
+                                        {{ currentTime.strftime("%d/%m/%Y") }}  
                                     </div>
-                                    <div class="stat-number text-dark mb-2">
-                                        {{ "{:,.0f}".format(totals.balance) }} ₫
-                                    </div>
-                                    <div class="change-indicator text-success">
+                                    <div class="text-muted" style="font-size: 24px;" id="current-time">
+                                        {{ currentTime.strftime("%H:%M:%S") }}
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +117,7 @@
                     </div> 
                     
 
-                    <!-- Recent Transactions -->
+                    <!-- recent transactions -->
                     <div class="row g-3"> <!--space between columns-->
                         <div class="col-12 col-md-8">
                             <div class="card tableCard border-secondary">
@@ -178,6 +177,31 @@
         </div>
     </div>
 
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const dateString = `${day}/${month}/${year}`;
+            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            
+            document.getElementById('current-date').textContent = dateString;
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        setInterval(updateClock, 1000);
+        
+        updateClock();
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

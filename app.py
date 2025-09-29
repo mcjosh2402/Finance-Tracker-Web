@@ -84,7 +84,8 @@ app = Flask(__name__) # create a webpage named app
 def home():
     totals = totalCalculation() # calculation dict
     recentTransactions = getRecentTransactions(3) # show i number of recent transactions
-    return render_template('home.html', totals = totals, recentTransactions = recentTransactions, active_page = 'home')
+    currentTime = datetime.now()
+    return render_template('home.html', totals = totals, recentTransactions = recentTransactions, active_page = 'home', currentTime = currentTime)
 
 @app.route('/add-transaction', methods=['GET', 'POST'])
 def addTransaction():
