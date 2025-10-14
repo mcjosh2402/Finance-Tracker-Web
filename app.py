@@ -49,7 +49,7 @@ def getTransactions():
     os.makedirs(os.path.dirname(fileName), exist_ok=True)
 
     try:
-        with open(fileName, "r") as file:
+        with open(fileName, "r", encoding='utf-8') as file:
             transactions = json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         transactions = []

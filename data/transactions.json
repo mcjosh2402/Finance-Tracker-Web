@@ -4,27 +4,27 @@
     "amount": 1000000.0,
     "date": "2025-09-19",
     "type": "Income",
-    "category": "Something"
+    "category": "Lương"
   },
   {
     "item": "RTX 4060",
     "amount": 300000.0,
     "date": "2025-09-19",
     "type": "Expense",
-    "category": "Something"
+    "category": "Mua sắm"
   },
   {
     "item": "RX 9060 XT",
     "amount": 200000.0,
     "date": "2025-09-19",
     "type": "Expense",
-    "category": "Something"
+    "category": "Mua sắm"
   },
   {
     "item": "Dinner",
     "amount": 30000.0,
     "date": "2025-09-28",
     "type": "Expense",
-    "category": "Something"
+    "category": "Ăn uống"
   }
 ]
